@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-color: #4f46e5; /* Indigo */
-    --sidebar-bg: #1e293b;    /* Dark Slate */
-    --bg-color: #f3f4f6;      /* Light Gray */
+    /* --- NEW THEME VARIABLES (Teal & Blue) --- */
+    --primary-color: #1abc9c;  /* Teal Green (Accents) */
+    --sidebar-bg: #2c3e50;     /* Dark Blue (Sidebar) */
+    --sidebar-hover: #34495e;  /* Lighter Blue (Hover) */
+    
+    /* Keeping your original functional variables */
+    --bg-color: #f3f4f6;       
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Text Colors */
+    --text-light: #ecf0f1;
+    --text-muted: #bdc3c7;
 }
 
 body {
@@ -14,80 +22,125 @@ body {
     overflow-x: hidden;
 }
 
-/* --- SIDEBAR STYLING --- */
+/* =========================================
+   1. NEW SIDEBAR DESIGN (Profile + Navigation)
+   ========================================= */
 #sidebar-wrapper {
     min-height: 100vh;
-    margin-left: -15rem;
-    transition: margin 0.25s ease-out;
+    width: 250px;
+    margin-left: 0;
     background-color: var(--sidebar-bg);
-    color: white;
+    color: var(--text-light);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
 }
 
-#sidebar-wrapper .sidebar-heading {
-    padding: 1.5rem 1.25rem;
-    font-size: 1.5rem;
+/* User Profile Section */
+.sidebar-profile {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.sidebar-profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.2);
+    margin-bottom: 15px;
+}
+
+.profile-info h5 {
+    font-size: 1rem;
     font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.profile-info small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.profile-info .id-text {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Navigation Label */
+.sidebar-label {
+    padding: 10px 25px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #7f8c8d;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-#sidebar-wrapper .list-group {
-    width: 15rem;
-}
-
+/* Menu Links */
 #sidebar-wrapper .list-group-item {
     background-color: transparent;
-    color: #cbd5e1; /* Light text */
+    color: var(--text-light);
     border: none;
-    padding: 1rem 1.5rem;
+    padding: 12px 25px;
     font-weight: 500;
-    transition: all 0.3s;
+    border-left: 4px solid transparent;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar-wrapper .list-group-item i {
+    width: 25px;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    text-align: center;
+    color: var(--text-muted);
 }
 
 #sidebar-wrapper .list-group-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--sidebar-hover);
     color: #fff;
-    padding-left: 1.75rem; /* Subtle slide effect */
+    border-left-color: var(--text-muted);
 }
 
 #sidebar-wrapper .list-group-item.active {
-    background-color: var(--primary-color);
+    background-color: rgba(0,0,0,0.2);
     color: #fff;
-    border-right: 4px solid #818cf8;
+    border-left-color: var(--primary-color);
 }
 
+#sidebar-wrapper .list-group-item.active i {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   2. PRESERVED COMPONENTS (Cards, Charts, Tables)
+   ========================================= */
 #page-content-wrapper {
-    min-width: 100vw;
+    width: 100%;
+    transition: all 0.25s ease;
 }
 
-/* Toggled State for Desktop */
-body.sb-sidenav-toggled #sidebar-wrapper {
-    margin-left: 0;
-}
-
-@media (min-width: 768px) {
-    #sidebar-wrapper {
-        margin-left: 0;
-    }
-    #page-content-wrapper {
-        min-width: 0;
-        width: 100%;
-    }
-    body.sb-sidenav-toggled #sidebar-wrapper {
-        margin-left: -15rem;
-    }
-}
-
-/* --- CARD STYLING (Mesmerizing Touch) --- */
+/* Card Styling (Kept from your original code) */
 .stat-card {
     background: white;
     border: none;
-    border-radius: 16px; /* More rounded */
+    border-radius: 16px;
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px); /* Floating effect */
+    transform: translateY(-5px);
     box-shadow: var(--hover-shadow);
 }
 
@@ -101,26 +154,7 @@ body.sb-sidenav-toggled #sidebar-wrapper {
     font-size: 1.5rem;
 }
 
-/* --- TABLE STYLING --- */
-.table-custom thead th {
-    background-color: #f8fafc;
-    color: #64748b;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.table-custom tbody tr {
-    transition: background-color 0.2s;
-}
-
-.table-custom tbody tr:hover {
-    background-color: #f1f5f9;
-}
-
-/* --- CHART CONTAINER --- */
+/* Chart Container (Kept) */
 .chart-container {
     background: white;
     border-radius: 16px;
@@ -128,56 +162,7 @@ body.sb-sidenav-toggled #sidebar-wrapper {
     box-shadow: var(--card-shadow);
 }
 
-/* --- NAVBAR & TOPBAR --- */
-.navbar {
-    background: #ffffff;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
-}
-.navbar .btn-light {
-    background: #f8fafc;
-    border: 1px solid rgba(15, 23, 42, 0.04);
-}
-.navbar .nav-link {
-    color: #374151;
-}
-.navbar .nav-link:hover { color: #111827; }
-
-/* Force consistent navbar appearance even if page uses different utility classes */
-.navbar.bg-primary, .navbar.navbar-dark.bg-primary {
-    background: #ffffff !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05) !important;
-}
-.navbar.bg-primary .nav-link, .navbar.navbar-dark.bg-primary .nav-link,
-.navbar.bg-primary .navbar-brand, .navbar.navbar-dark.bg-primary .navbar-brand {
-    color: #374151 !important;
-}
-
-/* Make forms and buttons in the navbar readable when forced to light background */
-.navbar.bg-primary .btn, .navbar.bg-primary .form-control {
-    color: #374151 !important;
-}
-
-/* Theme toggle small adjustments */
-.theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-size: 14px;
-}
-
-/* Ensure the sidebar + content wrapper works across pages */
-#wrapper, #page-content-wrapper {
-    width: 100%;
-}
-
-/* Make the page content have comfortable paddings on narrow screens */
-@media (max-width: 767px) {
-    .container-fluid { padding-left: 1rem; padding-right: 1rem; }
-}
-
-/* Table styles for cars/custom tables */
-.custom-table thead th,
+/* Table Styling (Kept) */
 .table-custom thead th {
     background-color: #f8fafc;
     color: #64748b;
@@ -187,11 +172,10 @@ body.sb-sidenav-toggled #sidebar-wrapper {
     letter-spacing: 0.05em;
     border-bottom: 2px solid #e2e8f0;
 }
-.custom-table tbody tr:hover,
+.table-custom tbody tr { transition: background-color 0.2s; }
 .table-custom tbody tr:hover { background-color: #f1f5f9; }
 
-/* Also apply header styles to generic Bootstrap tables inside the main container
-   so pages that don't use .custom-table still look consistent */
+/* Generic Table Header Fix */
 .container table.table thead th,
 .container-fluid table.table thead th {
     background-color: #f8fafc;
@@ -202,69 +186,158 @@ body.sb-sidenav-toggled #sidebar-wrapper {
     letter-spacing: 0.05em;
     border-bottom: 2px solid #e2e8f0;
 }
-.container table.table tbody tr:hover,
-.container-fluid table.table tbody tr:hover { background-color: #f1f5f9; }
 
-/* Card radius consistency */
-.rounded-4 { border-radius: 16px !important; }
+/* =========================================
+   3. NAVBAR STYLING (New Teal Theme)
+   ========================================= */
+.navbar-teal {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-/* small helpers to keep contrast in dark-fixes interplay */
-footer { padding: 1rem 0; }
+.navbar-teal .navbar-brand, 
+.navbar-teal .nav-link,
+.navbar-teal i {
+    color: #fff !important;
+}
 
-/* Keep focus outlines visible for accessibility */
-:focus { outline: 3px solid rgba(79,70,229,0.15); outline-offset: 2px; }
+.navbar-teal .btn-light {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+}
 
-/* --- SIDEBAR COLLAPSE / MOBILE OVERLAY --- */
-/* collapsed (icons-only) state for wider screens */
+/* =========================================
+   4. COLLAPSED & MOBILE STATE logic
+   ========================================= */
+
+/* DESKTOP: Collapsed State */
 body.sb-sidenav-collapsed #sidebar-wrapper {
-    width: 72px;
-    margin-left: 0;
+    width: 70px;
 }
-body.sb-sidenav-collapsed #sidebar-wrapper .sidebar-heading {
-    padding: 1rem 0;
-    font-size: 1.1rem;
+
+/* Hide Profile & Text when collapsed */
+body.sb-sidenav-collapsed .sidebar-profile,
+body.sb-sidenav-collapsed .sidebar-label,
+body.sb-sidenav-collapsed .menu-text {
+    display: none !important;
 }
-body.sb-sidenav-collapsed #sidebar-wrapper .list-group {
-    width: 72px;
-}
+
+/* Center Icons when collapsed */
 body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item {
-    padding: 0.65rem 0.6rem;
-    text-align: center;
-    transition: padding 0.15s;
+    padding: 15px 0;
+    justify-content: center;
 }
+
 body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item i {
     margin-right: 0;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
 }
-body.sb-sidenav-collapsed #sidebar-wrapper .list-group-item .menu-label {
-    display: none;
-}
-/* make page content give space when collapsed */
+
+/* Adjust Content */
 body.sb-sidenav-collapsed #page-content-wrapper {
-    margin-left: 72px;
+    margin-left: 0; 
+    /* Note: Since we use flexbox in layout, margin-left 0 is fine, 
+       the sidebar just takes up less space in the flex container */
 }
 
-/* overlay (mobile) open state */
-body.sb-sidenav-open #sidebar-wrapper {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 1050;
-    margin-left: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    background-color: var(--sidebar-bg);
+/* MOBILE: Overlay State */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+        position: fixed;
+        height: 100vh;
+        z-index: 1050;
+    }
+    
+    body.sb-sidenav-open #sidebar-wrapper {
+        margin-left: 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .sidebar-backdrop {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1040;
+        backdrop-filter: blur(2px);
+    }
 }
-.sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 1040;
+
+/* =========================================
+   5. DARK MODE OVERRIDES (PRESERVED)
+   ========================================= */
+[data-bs-theme="dark"] {
+    --bg-color: #0f172a;       /* Very dark blue/slate */
+    --sidebar-bg: #020617;     /* Black-ish sidebar */
+    --card-bg: #1e293b;        /* Dark card background */
+    --text-main: #f8fafc;      /* White text */
+    --text-muted: #94a3b8;     /* Gray text */
+    --border-color: #334155;   /* Dark borders */
 }
 
-/* helper for menu label inserted by JS */
-.menu-label { margin-left: .5rem; display: inline-block; }
+/* Apply dark variables */
+[data-bs-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
 
-/* subtle transitions */
-#sidebar-wrapper { transition: width 0.22s ease, margin 0.22s ease, left 0.22s ease; }
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .stat-card,
+[data-bs-theme="dark"] .chart-container,
+[data-bs-theme="dark"] .navbar,
+[data-bs-theme="dark"] .list-group-item, 
+[data-bs-theme="dark"] footer {
+    background-color: var(--card-bg) !important;
+    color: var(--text-main);
+    border-color: var(--border-color) !important;
+}
 
+/* Specific fixes for Dark Mode Text */
+[data-bs-theme="dark"] h1, 
+[data-bs-theme="dark"] h2, 
+[data-bs-theme="dark"] h3, 
+[data-bs-theme="dark"] h4, 
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] .fw-bold.text-dark {
+    color: var(--text-main) !important;
+}
+
+[data-bs-theme="dark"] .text-muted,
+[data-bs-theme="dark"] .text-secondary {
+    color: var(--text-muted) !important;
+}
+
+/* Fix Tables in Dark Mode */
+[data-bs-theme="dark"] .table {
+    color: var(--text-main);
+    border-color: var(--border-color);
+}
+[data-bs-theme="dark"] .table-light {
+    background-color: #0f172a;
+    color: var(--text-main);
+}
+[data-bs-theme="dark"] .table thead th {
+    background-color: #0f172a;
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+[data-bs-theme="dark"] .table-hover tbody tr:hover {
+    background-color: #334155;
+}
+
+/* Fix Form Inputs */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+/* 6. IMAGE HANDLING IN TABLES */
+.table-custom img {
+    width: 80px;
+    height: 45px; /* Fixed height */
+    object-fit: cover; /* Prevents stretching */
+    border-radius: 6px;
+}
