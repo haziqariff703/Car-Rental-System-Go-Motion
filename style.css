@@ -241,7 +241,49 @@ body.sb-sidenav-collapsed #page-content-wrapper {
        the sidebar just takes up less space in the flex container */
 }
 
-/* MOBILE: Overlay State */
+/* =========================================
+   RESPONSIVE MEDIA QUERIES (Desktop First)
+   Order: Large -> Small
+   ========================================= */
+
+/* 1. DESKTOP VIEW (Max 1440px) */
+/* Adjustments for standard laptops/smaller desktops */
+@media (max-width: 1440px) {
+    /* Example: Reduce container padding slightly */
+    .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+/* =========================================
+   RESPONSIVE MEDIA QUERIES (Desktop First)
+   Order: Large -> Small
+   ========================================= */
+
+/* 1. DESKTOP VIEW (Max 1440px) */
+/* Adjustments for standard laptops/smaller desktops */
+@media (max-width: 1440px) {
+    /* Example: Reduce container padding slightly */
+    .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+/* 2. TABLET VIEW (Max 1024px) */
+/* Adjustments for iPad Pro or Landscape Tablets */
+@media (max-width: 1024px) {
+    /* Example: Make charts take up full width instead of sharing a row */
+    .col-lg-4, .col-lg-8 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* 3. MOBILE/TABLET SIDEBAR LOGIC (Max 768px) */
+/* ⚠️ CRITICAL: Keep this exactly as it was in your original code.
+   This handles the sidebar turning into an overlay. */
 @media (max-width: 768px) {
     #sidebar-wrapper {
         margin-left: -250px;
@@ -261,6 +303,29 @@ body.sb-sidenav-collapsed #page-content-wrapper {
         background: rgba(0,0,0,0.5);
         z-index: 1040;
         backdrop-filter: blur(2px);
+    }
+    
+    /* Hide the "Toggle" button if you want, or move it */
+    .navbar-teal {
+        padding: 10px !important;
+    }
+}
+
+/* 4. MOBILE VIEW (Max 600px) */
+/* Adjustments for Smartphones */
+@media (max-width: 600px) {
+    /* Example: Stack the stats cards vertically */
+    .col-md-4 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Example: Reduce font sizes for mobile */
+    h2 { font-size: 1.5rem; }
+    
+    /* Example: Hide the user avatar in the navbar to save space */
+    .navbar .rounded-circle {
+        display: none;
     }
 }
 
